@@ -19,7 +19,7 @@ jobs:
 
     - name: Install node_modules
       run: |
-        cd web-app/web-app
+        cd web-app/my-react-app
         npm install
 
     - name: Configure AWS credentials
@@ -31,7 +31,7 @@ jobs:
       
     - name: Build image
       run: |
-        cd web-app/web-app
+        cd web-app/my-react-app
         docker build -t web-app:${{ github.sha }} .
         aws ecr get-login-password --region eu-central-1 | docker login --username AWS --password-stdin 313422618945.dkr.ecr.eu-central-1.amazonaws.com
         docker tag web-app:${{ github.sha }} 313422618945.dkr.ecr.eu-central-1.amazonaws.com/${{ env.IMAGE_NAME }}:${{ github.sha }}
