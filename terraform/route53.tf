@@ -1,5 +1,5 @@
 data "aws_route53_zone" "appstellar-training" {
- name = "appstellar.training"
+  name = "appstellar.training"
 }
 
 
@@ -9,4 +9,12 @@ resource "aws_route53_record" "www" {
   type    = "A"
   ttl     = 300
   records = ["8.8.8.8"]
+}
+
+data "aws_lb" "this" {
+
+  tags = {
+    Name       = "devops-training"
+    Enviroment = "dev"
+  }
 }
