@@ -8,7 +8,7 @@ image:
   repository: 313422618945.dkr.ecr.eu-central-1.amazonaws.com/jetlir-assignment3
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
-  tag: 37c68d59f3321971d6b7cfe7f53ce8ddd26dc94e
+  tag: b57c8694a77107129f4f669529a5d6df30ea9c93
 
 imagePullSecrets: []
 nameOverride: ""
