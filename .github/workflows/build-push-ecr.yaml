@@ -38,7 +38,7 @@ jobs:
         docker push 313422618945.dkr.ecr.eu-central-1.amazonaws.com/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
     - name: Update Docker image tag in HELM chart
-      working-directory: helm/web
+      working-directory: helm/web-app
       run: |
           git_hash=${{ github.sha }}
           tag=$(cat ./values.yaml | grep tag: | awk '{print $2}')
