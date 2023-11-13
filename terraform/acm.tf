@@ -1,3 +1,7 @@
+data "aws_route53_zone" "appstellar-training" {
+  name = "appstellar.training"
+}
+
 module "acm" {
   source  = "terraform-aws-modules/acm/aws"
   version = "~> 4.0"
