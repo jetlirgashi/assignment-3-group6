@@ -37,7 +37,17 @@ jobs:
         docker tag web-app:${{ github.sha }} 313422618945.dkr.ecr.eu-central-1.amazonaws.com/${{ env.IMAGE_NAME }}:${{ github.sha }}
         docker push 313422618945.dkr.ecr.eu-central-1.amazonaws.com/${{ env.IMAGE_NAME }}:${{ github.sha }}
 
-    # - name: Update image tag
-    #   run: |
+    - name: Update Docker image tag in HELM chart
+      working-directory: helm/web
+      run: |
+          git_hash=${{ github.sha }}
+          tag=$(cat ./values.yaml | grep tag: | awk '{print $2}')
+          sed -i "s/$tag/$git_hash/" ./values.yaml
+          
+    - name: Commit and push changes
+      uses: devops-infra/action-commit-push@v0.3
+      with:
+        github_token: ${{ secrets.PAT_GITHUB }}
+        commit_message: Version updated
 
       
